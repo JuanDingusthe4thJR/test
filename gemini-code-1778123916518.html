@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <h2>My Apps</h2>
+        <nav id="app-list"></nav>
+    </div>
+    
+    <div class="main-content">
+        <iframe id="app-viewport" src="about:blank" frameborder="0"></iframe>
+        <div id="placeholder">Select an app to begin</div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        const appList = document.getElementById('app-list');
+        const viewport = document.getElementById('app-viewport');
+        const placeholder = document.getElementById('placeholder');
+
+        // Generate the buttons from config.js
+        apps.forEach(app => {
+            const btn = document.createElement('button');
+            btn.innerText = app.name;
+            btn.onclick = () => {
+                placeholder.style.display = 'none';
+                viewport.style.display = 'block';
+                viewport.src = app.url;
+            };
+            appList.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
